@@ -21,6 +21,7 @@ public class DispatchSoapMessageClient {
     private static final String Namespace = "http://webservices.mujahed.org/";
 
     public static void main(String[] args) throws Exception {
+        // trace request response: http://stackoverflow.com/questions/1945618/tracing-xml-request-responses-with-jax-ws
         System.setProperty("com.sun.xml.ws.transport.http.client.HttpTransportPipe.dump", "true");
         System.setProperty("com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.dump", "true");
         System.setProperty("com.sun.xml.ws.transport.http.HttpAdapter.dump", "true");
@@ -33,14 +34,16 @@ public class DispatchSoapMessageClient {
             QName portName = new QName(Namespace, "StockPriceImplPort");
             Service service = Service.create(url, serviceName);
             Dispatch<Source> dispatch = service.createDispatch(portName, Source.class, Service.Mode.MESSAGE);
+            //Dispatch<Source> dispatch = service.createDispatch(portName, Source.class, Service.Mode.PAYLOAD);
             Source response = dispatch.invoke(createSOAPmessage());
-            System.out.println("response :"+response);
+            //Source response = dispatch.invoke(createPayloadMessage());
+            System.out.println("response :" + response);
 
             final StringWriter requestXmlWriter = new StringWriter();
             final Transformer trans = TransformerFactory.newInstance().newTransformer();
             trans.transform(response, new StreamResult(requestXmlWriter));
             final String requestXml = requestXmlWriter.toString();
-            System.out.println("response\n"+requestXml);
+            System.out.println("response\n" + requestXml);
         } catch (MalformedURLException e) {
         }
     }
