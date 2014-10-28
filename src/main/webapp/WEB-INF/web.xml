@@ -16,6 +16,24 @@
         <servlet-name>hello</servlet-name>
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>jersey-helloworld-serlvet</servlet-name>
+        <servlet-class>
+            com.sun.jersey.spi.container.servlet.ServletContainer
+        </servlet-class>
+        <init-param>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>org.mujahed.webservices.rest</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>jersey-helloworld-serlvet</servlet-name>
+        <url-pattern>/math/*</url-pattern>
+    </servlet-mapping>
+
     <session-config>
         <session-timeout>120</session-timeout>
     </session-config>

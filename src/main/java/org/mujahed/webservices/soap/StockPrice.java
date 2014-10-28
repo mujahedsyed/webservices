@@ -1,4 +1,4 @@
-package org.mujahed.webservices;
+package org.mujahed.webservices.soap;
 
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;

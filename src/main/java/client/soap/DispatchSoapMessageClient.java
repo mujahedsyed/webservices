@@ -1,4 +1,4 @@
-package client;
+package client.soap;
 
 import javax.xml.namespace.QName;
 import javax.xml.transform.Result;
